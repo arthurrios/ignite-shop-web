@@ -1,15 +1,16 @@
 import Image from 'next/image'
 import Stripe from 'stripe'
 
+import { Button } from '@/components/button'
 import { getProduct } from '@/services/getProduct'
 
-interface ProductProps {
+interface ProductPageProps {
   params: {
     id: string
   }
 }
 
-export default async function Product({ params }: ProductProps) {
+export default async function ProductPage({ params }: ProductPageProps) {
   const product = await getProduct(params.id)
 
   const price = product.default_price as Stripe.Price
@@ -33,9 +34,7 @@ export default async function Product({ params }: ProductProps) {
           {product.description}
         </p>
 
-        <button className="mt-auto cursor-pointer rounded-lg border-0 bg-green-500 p-5 text-md font-bold text-white hover:bg-green-300">
-          Buy now
-        </button>
+        <Button defaultPriceId={price.id} />
       </div>
     </main>
   )

@@ -5,7 +5,7 @@ import { api } from '@/data/api'
 export async function getProducts(): Promise<Stripe.Product[]> {
   const response = await api('/products', {
     next: {
-      revalidate: 60 * 60 * 1, // 1 hour
+      revalidate: 3600, // 1 hour
     },
   })
 

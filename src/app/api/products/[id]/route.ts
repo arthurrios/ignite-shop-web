@@ -11,7 +11,7 @@ export async function GET(_: Request, { params }: { params: { id: string } }) {
   })
 
   if (!product) {
-    return new NextResponse({ type: { message: '' } }, { status: 400 })
+    return new NextResponse()
   }
 
   return NextResponse.json(product)
