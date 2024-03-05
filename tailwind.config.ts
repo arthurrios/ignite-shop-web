@@ -23,7 +23,8 @@ const config: Config = {
         'green-300': '#00b37e',
       },
       maxWidth: {
-        main: 'calc(100vw - ((100vw - 1180px) / 2))',
+        carousel: 'calc(100vw - ((100vw - 1180px) / 2))',
+        main: '1180px',
       },
       fontSize: {
         md: '1.125rem',

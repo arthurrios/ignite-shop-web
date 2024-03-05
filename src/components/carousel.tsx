@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-interface ProductItem {
+export interface ProductItem {
   id: string
   name: string
   imageUrl: string
@@ -28,7 +28,7 @@ export function Carousel({ products }: CarouselProps) {
   return (
     <main
       ref={sliderRef}
-      className="keen-slider ml-auto flex min-h-[656px] w-full max-w-main"
+      className="keen-slider max-w-carousel ml-auto flex min-h-[656px] w-full"
     >
       {products.map((product) => {
         return (
