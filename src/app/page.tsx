@@ -16,7 +16,10 @@ export default async function Home() {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount! / 100,
+      price: new Intl.NumberFormat('en', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(price.unit_amount! / 100),
     }
   })
 

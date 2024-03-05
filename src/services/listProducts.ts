@@ -6,7 +6,7 @@ export interface ProductItem {
   id: string
   name: string
   imageUrl: string
-  price: number
+  price: string
 }
 
 export const listProducts = cache(async () => {
