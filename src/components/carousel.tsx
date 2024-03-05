@@ -4,6 +4,8 @@ import 'keen-slider/keen-slider.min.css'
 
 import { useKeenSlider } from 'keen-slider/react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { twMerge } from 'tailwind-merge'
 
 interface ProductItem {
   id: string
@@ -30,10 +32,12 @@ export function Carousel({ products }: CarouselProps) {
     >
       {products.map((product) => {
         return (
-          <a
+          <Link
             key={product.id}
-            href=""
-            className="keen-slider__slide group relative flex min-w-[560px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gradient-to-b from-[#1EA483] to-[#7465D4] p-1"
+            href={`/product/${product.id}`}
+            className={twMerge(
+              'keen-slider__slide group relative flex min-w-[560px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-gradient-to-b from-[#1EA483] to-[#7465D4] p-1',
+            )}
           >
             <Image
               className="object-cover"
@@ -49,7 +53,7 @@ export function Carousel({ products }: CarouselProps) {
                 {product.price}
               </span>
             </footer>
-          </a>
+          </Link>
         )
       })}
     </main>
