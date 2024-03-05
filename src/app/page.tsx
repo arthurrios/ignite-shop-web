@@ -1,15 +1,15 @@
 import Stripe from 'stripe'
 
 import { Carousel } from '@/components/carousel'
-import { listProducts } from '@/services/listProducts'
+import { getProducts } from '@/services/getProducts'
 
 export const fetchCache = 'default-no-store'
 export const revalidate = 3600
 
 export default async function Home() {
-  const data = await listProducts()
+  const products = await getProducts()
 
-  const products = data.map((product) => {
+  const productsData = products.map((product) => {
     const price = product.default_price as Stripe.Price
 
     return {
@@ -23,5 +23,5 @@ export default async function Home() {
     }
   })
 
-  return <Carousel products={products} />
+  return <Carousel products={productsData} />
 }

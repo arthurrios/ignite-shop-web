@@ -5,7 +5,12 @@ import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import Image from 'next/image'
 
-import { ProductItem } from '@/services/listProducts'
+interface ProductItem {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+}
 
 export interface CarouselProps {
   products: ProductItem[]
