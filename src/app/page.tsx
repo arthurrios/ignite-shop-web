@@ -12,7 +12,6 @@ import shirt3 from '../assets/shirts/3.png'
 export default function Home() {
   const [sliderRef] = useKeenSlider({
     slides: {
-      perView: 2.7,
       spacing: 48,
     },
   })
