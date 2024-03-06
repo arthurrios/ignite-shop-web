@@ -5,6 +5,8 @@ import { Roboto } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { CartProvider } from '@/contexts/cart-context'
+
 import logoImg from '../assets/logo.svg'
 
 const roboto = Roboto({
@@ -27,14 +29,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <div className="flex min-h-screen flex-col items-start justify-center">
-          <header className="mx-auto w-full max-w-[1180px] px-0 py-8">
-            <Link href="/">
-              <Image src={logoImg} alt="" />
-            </Link>
-          </header>
-          {children}
-        </div>
+        <CartProvider>
+          <div className="flex min-h-screen flex-col items-start justify-center">
+            <header className="mx-auto w-full max-w-[1180px] px-0 py-8">
+              <Link href="/">
+                <Image src={logoImg} alt="" />
+              </Link>
+            </header>
+            {children}
+          </div>
+        </CartProvider>
       </body>
     </html>
   )
