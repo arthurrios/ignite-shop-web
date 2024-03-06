@@ -1,5 +1,6 @@
 'use client'
 
+import axios from 'axios'
 import { ButtonHTMLAttributes } from 'react'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -7,8 +8,18 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function Button({ defaultPriceId }: ButtonProps) {
-  function handleBuyProduct() {
-    console.log(defaultPriceId)
+  async function handleBuyProduct() {
+    try {
+      const response = await axios.post('/api/checkout', {
+        priceId: defaultPriceId,
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl
+    } catch (error) {
+      alert('Failed connecting to checkout')
+    }
   }
 
   return (

@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 import { env } from '@/env'
 import { stripe } from '@/lib/stripe'
 
-export async function GET() {
-  const priceId = 'price_1OqwwDLBbkbrRQR3iRQoAZ0n'
+export async function POST(req: NextRequest) {
+  const { priceId } = await req.json()
 
   const successUrl = `${env.NEXT_PUBLIC_API_BASE_URL}/success`
   const cancelUrl = `${env.NEXT_PUBLIC_API_BASE_URL}/`
