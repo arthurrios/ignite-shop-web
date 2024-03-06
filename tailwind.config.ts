@@ -22,6 +22,12 @@ const config: Config = {
         'green-500': '#00875f',
         'green-300': '#00b37e',
       },
+      height: {
+        container: '656px',
+      },
+      minHeight: {
+        container: '656px',
+      },
       maxWidth: {
         carousel: 'calc(100vw - ((100vw - 1180px) / 2))',
         main: '1180px',

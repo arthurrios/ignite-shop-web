@@ -28,7 +28,7 @@ export function Carousel({ products }: CarouselProps) {
   return (
     <main
       ref={sliderRef}
-      className="keen-slider max-w-carousel ml-auto flex min-h-[656px] w-full"
+      className="keen-slider min-h-container ml-auto flex w-full max-w-carousel"
     >
       {products.map((product) => {
         return (
