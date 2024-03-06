@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Stripe from 'stripe'
 
-import { Button } from '@/components/button'
+import { AddToCartButton } from '@/components/add-to-cart-button'
 import { getProduct } from '@/services/getProduct'
 
 export interface ProductPageProps {
@@ -45,7 +45,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {product.description}
         </p>
 
-        <Button defaultPriceId={price.id} />
+        <AddToCartButton defaultPriceId={price.id} />
       </div>
     </main>
   )
