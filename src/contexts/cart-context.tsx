@@ -1,9 +1,15 @@
 'use client'
 
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 interface CartItem {
-  productId: string
+  priceId: string
   quantity: number
 }
 
@@ -16,29 +22,45 @@ interface CartContextType {
 const CartContext = createContext({} as CartContextType)
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    const storedStateAsJSON = localStorage.getItem(
+      '@ignite-shop:cart-items-1.0.0',
+    )
 
-  function addToCart(productId: string) {
+    if (storedStateAsJSON) {
+      return JSON.parse(storedStateAsJSON)
+    }
+
+    return []
+  })
+
+  function addToCart(priceId: string) {
     setCartItems((state) => {
-      const productInCart = state.some((item) => item.productId === productId)
+      const productInCart = state.some((item) => item.priceId === priceId)
 
       if (productInCart) {
         return state.map((item) => {
-          if (item.productId === productId) {
+          if (item.priceId === priceId) {
             return { ...item, quantity: item.quantity + 1 }
           } else {
             return item
           }
         })
       } else {
-        return [...state, { productId, quantity: 1 }]
+        return [...state, { priceId, quantity: 1 }]
       }
     })
   }
 
-  function removeCartItem(productId: string) {
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartItems)
+
+    localStorage.setItem('@ignite-shop:cart-items-1.0.0', stateJSON)
+  }, [cartItems])
+
+  function removeCartItem(priceId: string) {
     setCartItems((state) => {
-      return state.filter((item) => item.productId === productId)
+      return state.filter((item) => item.priceId === priceId)
     })
   }
 
