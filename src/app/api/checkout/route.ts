@@ -6,7 +6,7 @@ import { stripe } from '@/lib/stripe'
 export async function POST(req: NextRequest) {
   const { priceId } = await req.json()
 
-  const successUrl = `${env.NEXT_PUBLIC_API_BASE_URL}/success`
+  const successUrl = `${env.NEXT_PUBLIC_API_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`
   const cancelUrl = `${env.NEXT_PUBLIC_API_BASE_URL}/`
 
   const checkoutSession = await stripe.checkout.sessions.create({
