@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -27,9 +28,9 @@ export default async function Success({ searchParams }: SuccessPageProps) {
         <Image src={product.imageUrl} width={120} height={110} alt="" />
       </div>
 
-      <p className="mt-8 max-w-[560px] text-center text-xl leading-[1.4] text-gray-300">
-        Uhuul <strong>{customerName}</strong>, sua{' '}
-        <strong>{product.name}</strong> já está a caminho da sua casa.
+      <p className="mt-8 max-w-[490px] text-center text-xl leading-[1.4] text-gray-300">
+        Yay! <strong>{customerName}</strong>, your{' '}
+        <strong>{product.name}</strong> it's on the way.
       </p>
 
       <Link

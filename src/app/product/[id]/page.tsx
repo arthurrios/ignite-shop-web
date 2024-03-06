@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Stripe from 'stripe'
 
@@ -7,6 +8,16 @@ import { getProduct } from '@/services/getProduct'
 interface ProductPageProps {
   params: {
     id: string
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const product = await getProduct(params.id)
+
+  return {
+    title: product.name,
   }
 }
 
