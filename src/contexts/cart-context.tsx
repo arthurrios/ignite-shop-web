@@ -8,14 +8,22 @@ import {
   useState,
 } from 'react'
 
-interface CartItem {
+export interface CartItem {
   priceId: string
+  name: string
+  priceInCents: number
+  imageUrl: string
   quantity: number
 }
 
 interface CartContextType {
   items: CartItem[]
-  addToCart: (productId: string) => void
+  addToCart: (
+    priceId: string,
+    imageUrl: string,
+    name: string,
+    priceInCents: number,
+  ) => void
   removeCartItem: (productId: string) => void
 }
 
@@ -34,20 +42,37 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return []
   })
 
-  function addToCart(priceId: string) {
+  function addToCart(
+    priceId: string,
+    imageUrl: string,
+    name: string,
+    priceInCents: number,
+  ) {
     setCartItems((state) => {
       const productInCart = state.some((item) => item.priceId === priceId)
 
       if (productInCart) {
         return state.map((item) => {
           if (item.priceId === priceId) {
-            return { ...item, quantity: item.quantity + 1 }
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            }
           } else {
-            return item
+            return { ...item }
           }
         })
       } else {
-        return [...state, { priceId, quantity: 1 }]
+        return [
+          ...state,
+          {
+            priceId,
+            imageUrl,
+            name,
+            priceInCents,
+            quantity: 1,
+          },
+        ]
       }
     })
   }
@@ -59,9 +84,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cartItems])
 
   function removeCartItem(priceId: string) {
-    setCartItems((state) => {
-      return state.filter((item) => item.priceId === priceId)
-    })
+    if (cartItems.length === 1) {
+      setCartItems([])
+    } else {
+      setCartItems((state) => {
+        return state.filter((item) => item.priceId === priceId)
+      })
+    }
   }
 
   return (
