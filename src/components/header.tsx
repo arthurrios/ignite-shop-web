@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { useCart } from '@/contexts/cart-context'
+import { postCheckoutSession } from '@/services/postCheckoutSession'
 
 import logoImg from '../assets/logo.svg'
 import { CartItem } from './cart-item'
@@ -22,7 +23,22 @@ export function Header() {
     0,
   )
 
-  console.log(orderTotal / 100)
+  async function handleCheckout() {
+    const checkoutItems = items.map((item) => {
+      return {
+        price: item.priceId,
+        quantity: item.quantity,
+      }
+    })
+
+    try {
+      const checkoutUrl = await postCheckoutSession(checkoutItems)
+
+      window.location.href = checkoutUrl
+    } catch (error) {
+      alert('Error redirecting to checkout.')
+    }
+  }
 
   return (
     <header className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-0 py-8">
@@ -67,7 +83,10 @@ export function Header() {
                     </span>
                   </div>
                 </div>
-                <button className="w-full rounded-lg border-0 bg-green-500 px-8 py-5 text-md font-bold text-white hover:bg-green-300">
+                <button
+                  onClick={handleCheckout}
+                  className="w-full rounded-lg border-0 bg-green-500 px-8 py-5 text-md font-bold text-white hover:bg-green-300"
+                >
                   Complete order
                 </button>
               </div>

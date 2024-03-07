@@ -21,7 +21,7 @@ export function CartItem({ item }: CartItemProps) {
   return (
     <div className="flex items-center gap-5">
       <div className="relative flex h-[93px] w-[102px] items-center justify-center rounded-lg bg-gradient-to-b from-[#1EA483] to-[#7465D4]">
-        <div className="absolute -bottom-4 -left-4 flex size-8 items-center justify-center rounded-full bg-green-500 text-lg font-bold">
+        <div className="absolute -bottom-4 -left-4 flex size-8 items-center justify-center rounded-full border-4 border-gray-800 bg-green-500 text-lg font-bold">
           {item.quantity}
         </div>
         <Image src={item.imageUrl} width={95} height={95} alt="" />

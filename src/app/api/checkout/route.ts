@@ -4,7 +4,7 @@ import { env } from '@/env'
 import { stripe } from '@/lib/stripe'
 
 export async function POST(req: NextRequest) {
-  const { priceId } = await req.json()
+  const { checkoutItems } = await req.json()
 
   const successUrl = `${env.NEXT_PUBLIC_API_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`
   const cancelUrl = `${env.NEXT_PUBLIC_API_BASE_URL}/`
@@ -13,12 +13,7 @@ export async function POST(req: NextRequest) {
     success_url: successUrl,
     cancel_url: cancelUrl,
     mode: 'payment',
-    line_items: [
-      {
-        price: priceId,
-        quantity: 1,
-      },
-    ],
+    line_items: checkoutItems,
   })
 
   return NextResponse.json(
