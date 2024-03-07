@@ -1,19 +1,27 @@
 'use client'
 
-// import axios from 'axios'
 import { ButtonHTMLAttributes } from 'react'
 
 import { useCart } from '@/contexts/cart-context'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  defaultPriceId: string
+  priceId: string
+  imageUrl: string
+  name: string
+
+  priceInCents: number
 }
 
-export function AddToCartButton({ defaultPriceId }: ButtonProps) {
+export function AddToCartButton({
+  priceId,
+  name,
+  priceInCents,
+  imageUrl,
+}: ButtonProps) {
   const { addToCart } = useCart()
 
   function handleAddToCart() {
-    addToCart(defaultPriceId)
+    addToCart(priceId, imageUrl, name, priceInCents)
   }
 
   // async function handleBuyProduct() {
@@ -35,7 +43,7 @@ export function AddToCartButton({ defaultPriceId }: ButtonProps) {
       onClick={handleAddToCart}
       className="mt-auto cursor-pointer rounded-lg border-0 bg-green-500 p-5 text-md font-bold text-white hover:bg-green-300"
     >
-      Buy now
+      Add to cart
     </button>
   )
 }

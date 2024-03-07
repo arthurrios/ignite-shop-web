@@ -45,7 +45,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {product.description}
         </p>
 
-        <AddToCartButton defaultPriceId={price.id} />
+        <AddToCartButton
+          priceId={price.id}
+          imageUrl={product.images[0]}
+          name={product.name}
+          priceInCents={price.unit_amount!}
+        />
       </div>
     </main>
   )
