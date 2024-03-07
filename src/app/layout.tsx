@@ -3,7 +3,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 
-import { Header } from '@/components/header'
 import { CartProvider } from '@/contexts/cart-context'
 
 const roboto = Roboto({
@@ -28,7 +27,6 @@ export default function RootLayout({
       <body className={roboto.className}>
         <CartProvider>
           <div className="flex min-h-screen flex-col items-start justify-center">
-            <Header />
             {children}
           </div>
         </CartProvider>

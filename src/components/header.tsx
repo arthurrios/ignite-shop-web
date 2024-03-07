@@ -15,7 +15,7 @@ import { CartWidget } from './cart-widget'
 export interface HeaderProps {}
 
 export function Header() {
-  const { items } = useCart()
+  const { items, clearCart } = useCart()
 
   const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0)
   const orderTotal = items.reduce(
@@ -35,6 +35,7 @@ export function Header() {
       const checkoutUrl = await postCheckoutSession(checkoutItems)
 
       window.location.href = checkoutUrl
+      clearCart()
     } catch (error) {
       alert('Error redirecting to checkout.')
     }

@@ -49,6 +49,7 @@ const config: Config = {
       },
       dropShadow: {
         modal: '-4px 0px 30px rgba(0, 0, 0, 0.8)',
+        checkoutItem: '0 0 60px rgba(0, 0, 0, 0.8)',
       },
     },
   },
