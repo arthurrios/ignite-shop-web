@@ -88,7 +88,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setCartItems([])
     } else {
       setCartItems((state) => {
-        return state.filter((item) => item.priceId === priceId)
+        return state.filter((item) => item.priceId !== priceId)
       })
     }
   }
