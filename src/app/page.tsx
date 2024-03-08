@@ -1,6 +1,7 @@
 import Stripe from 'stripe'
 
 import { Carousel } from '@/components/carousel'
+import { Header } from '@/components/header'
 import { getProducts } from '@/services/getProducts'
 
 export const fetchCache = 'default-no-store'
@@ -23,5 +24,10 @@ export default async function Home() {
     }
   })
 
-  return <Carousel products={productsData} />
+  return (
+    <>
+      <Header />
+      <Carousel products={productsData} />
+    </>
+  )
 }

@@ -2,10 +2,10 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Stripe from 'stripe'
 
-import { Button } from '@/components/button'
+import { AddToCartButton } from '@/components/add-to-cart-button'
 import { getProduct } from '@/services/getProduct'
 
-interface ProductPageProps {
+export interface ProductPageProps {
   params: {
     id: string
   }
@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main className="mx-auto grid max-w-main grid-cols-2 items-stretch gap-16">
-      <div className="h-container flex w-full max-w-[576px] items-center justify-center rounded-lg bg-gradient-to-b from-[#1EA483] to-[#7465D4] p-1">
+      <div className="flex h-container w-full max-w-[576px] items-center justify-center rounded-lg bg-gradient-to-b from-[#1EA483] to-[#7465D4] p-1">
         <Image src={product.images[0]} width={520} height={480} alt="" />
       </div>
       <div className="flex flex-col">
@@ -45,7 +45,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {product.description}
         </p>
 
-        <Button defaultPriceId={price.id} />
+        <AddToCartButton
+          priceId={price.id}
+          imageUrl={product.images[0]}
+          name={product.name}
+          priceInCents={price.unit_amount!}
+        />
       </div>
     </main>
   )

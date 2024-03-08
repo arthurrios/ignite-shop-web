@@ -8,13 +8,19 @@ export async function getCheckoutSession(sessionId: string) {
   })
 
   const customerName = session.customer_details?.name
-  const product = session.line_items?.data[0].price?.product as Stripe.Product
+  // const product = session.line_items?.data[0].price?.product as Stripe.Product
+  const products = session.line_items?.data.map(
+    (item) => item.price?.product,
+  ) as Stripe.Product[]
+
+  const totalQuantity = session.line_items?.data.reduce(
+    (acc, item) => acc + item.quantity!,
+    0,
+  )
 
   return {
     customerName,
-    product: {
-      name: product.name,
-      imageUrl: product.images[0],
-    },
+    products,
+    totalQuantity,
   }
 }

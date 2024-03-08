@@ -16,14 +16,21 @@ const config: Config = {
       colors: {
         'gray-900': '#121214',
         'gray-800': '#202024',
+        'gray-400': '#8D8D99',
         'gray-300': '#c4c4cc',
         'gray-100': '#e1e1e6',
 
         'green-500': '#00875f',
         'green-300': '#00b37e',
       },
+      padding: {
+        '18': '4.5rem',
+      },
       height: {
         container: '656px',
+      },
+      width: {
+        modal: '480px',
       },
       minHeight: {
         container: '656px',
@@ -33,10 +40,16 @@ const config: Config = {
         main: '1180px',
       },
       fontSize: {
+        xs: '0.875rem',
+        sm: '1rem',
         md: '1.125rem',
         lg: '1.25rem',
         xl: '1.5rem',
         '2xl': '2rem',
+      },
+      dropShadow: {
+        modal: '-4px 0px 30px rgba(0, 0, 0, 0.8)',
+        checkoutItem: '0 0 60px rgba(0, 0, 0, 0.8)',
       },
     },
   },
